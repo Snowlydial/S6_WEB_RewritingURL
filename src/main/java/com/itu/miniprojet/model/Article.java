@@ -37,7 +37,7 @@ public class Article {
     public Article() {}
 
     public Article(String _title, String _content, String _authors) {
-        this.title = _title;
+        setTitle(_title);
         this.content = _content;
         this.authors = _authors;
     }
@@ -62,6 +62,20 @@ public class Article {
     public void setAuthors(String authors) { this.authors = authors; }
 
     //?=== Utilities
+    private String generateSlug(String input) {
+        if (input == null) return "";
+        
+        // 1. Remove accents (Normalization)
+        String normalized = Normalizer.normalize(input, Normalizer.Form.NFD);
+        String accentFree = normalized.replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+
+        // 2. Lowercase, replace non-alphanumeric with hyphens, and trim
+        return accentFree.toLowerCase()
+            .replaceAll("[^a-z0-9\\s]", "")
+            .trim()
+            .replaceAll("\\s+", "-");
+    }
+
     @Override
     public String toString() {
         return "Article [id=" + id + ", title=" + title + ", slug=" + slug + 
