@@ -1,10 +1,14 @@
+DROP TABLE IF EXISTS article;
+DROP TABLE IF EXISTS role;
+DROP TABLE IF EXISTS user;
+
 CREATE TABLE article(
    id_article INT AUTO_INCREMENT,
    title VARCHAR(255) ,
    slug VARCHAR(255) ,
    content TEXT,
    created_at DATETIME,
-   written_by TEXT,
+   authors TEXT,
    PRIMARY KEY(id_article)
 );
 
