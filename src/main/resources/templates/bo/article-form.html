@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Article</title>
+    <script src="https://cdn.tiny.cloud/1/skykruf2h2iyzyisptxniimfug06dngjqysr4dm32mi64a9j/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
+</head>
+<body>
+    <form th:action="@{/article/save}" th:object="${article}" method="post">
+        <input type="text" th:field="*{title}" placeholder="Title" />
+        <input type="text" th:field="*{authors}" placeholder="Author Name" />
+        
+        <textarea id="contentEditor" th:field="*{content}"></textarea>
+        
+        <input type="hidden" th:field="*{id}" />
+        <input type="hidden" th:field="*{createdAt}" />
+
+        <button type="submit">Save Article</button>
+    </form>
+
+<script>
+    tinymce.init({
+        selector: '#contentEditor',
+        plugins: [
+            'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount'
+        ],
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+        mergetags_list: [
+            { value: 'First.Name', title: 'First Name' },
+            { value: 'Email', title: 'Email' },
+        ],
+        uploadcare_public_key: 'a0805c39252e588f44e2',
+    });
+</script>
+</body>
+</html>

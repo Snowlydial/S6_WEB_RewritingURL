@@ -24,7 +24,7 @@ public class Article {
     @Column(name = "slug", length = 255)
     private String slug;
 
-    @Column(name = "content", length = 255)
+    @Column(name = "content", columnDefinition = "TEXT")
     private String content;
 
     @Column(name = "created_at")
