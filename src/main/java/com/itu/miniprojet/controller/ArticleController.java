@@ -37,5 +37,12 @@ public class ArticleController {
         articleService.saveArticle(article);
         return "redirect:/article/list";
     }
+
+    @GetMapping("/delete/{id}")
+    public String deleteArticle(@PathVariable int id) {
+        articleService.deleteArticle(id);
+        return "redirect:/article/list"; 
+    }
+
     
 }
