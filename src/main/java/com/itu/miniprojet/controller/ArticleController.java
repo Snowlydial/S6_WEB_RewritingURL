@@ -25,6 +25,13 @@ public class ArticleController {
         return "bo/article-form";
     }
 
+    @GetMapping("/edit/{id}")
+    public String showEditForm(@PathVariable int id, Model model) {
+        Article article = articleService.findById(id);
+        model.addAttribute("article", article);
+        return "bo/article-form";
+    }
+
     @PostMapping("/save")
     public String saveArticle(@ModelAttribute Article article) {
         articleService.saveArticle(article);

@@ -13,6 +13,10 @@ public class ArticleService {
     @Autowired
     private ArticleRepository articleRepository;
 
+    public Article findById(int id) {
+        return articleRepository.findById(id).get();
+    }
+
     public Article saveArticle(Article article) {
         if (article.getCreatedAt() == null) article.setCreatedAt(LocalDateTime.now());
         return articleRepository.save(article);
