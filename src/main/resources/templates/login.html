@@ -1,49 +1,75 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Login - IranInfo CMS</title>
-    <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background: #f4f7f6; margin: 0; }
-        .login-container { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
-        h2 { text-align: center; color: #333; }
-        .form-group { margin-bottom: 1rem; }
-        label { display: block; margin-bottom: .5rem; color: #666; }
-        input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
-        button { width: 100%; padding: 10px; background: #007bff; border: none; color: white; border-radius: 4px; cursor: pointer; font-size: 16px; }
-        button:hover { background: #0056b3; }
-        .error { color: red; text-align: center; margin-bottom: 1rem; font-size: 14px; }
-        .guest-link { display: block; text-align: center; margin-top: 1.5rem; color: #666; text-decoration: none; font-weight: bold; }
-        .guest-link:hover { color: #007bff; text-decoration: underline; }
-        hr { border: 0; border-top: 1px solid #eee; margin: 1.5rem 0; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — IranInfo</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}" />
+    <link rel="stylesheet" th:href="@{/css/login.css}" />
 </head>
 <body>
 
-<div class="login-container">
-    <h2>Login</h2>
+<div class="login-page">
 
-    <div th:if="${param.error}" class="error">
-        Invalid username or password.
+    <!-- Brand panel -->
+    <div class="login-panel--brand">
+        <div>
+            <div class="brand-title display">
+                Iran<span class="brand-title__accent">Info</span>
+            </div>
+            <p class="brand-tagline">Actualités &amp; analyses</p>
+        </div>
+
+        <div>
+            <span class="accent-bar" style="margin-bottom: 2rem;"></span>
+            <p style="font-family: var(--font-body); font-size: 1.05rem; color: var(--grey); line-height: 1.7; max-width: 320px;">
+                Plateforme de gestion éditoriale.<br>
+                Rédigez, publiez, et gérez le contenu depuis cet espace.
+            </p>
+        </div>
+
+        <div class="brand-footer">
+            <span class="accent-bar accent-bar--blue"></span>
+            <span class="brand-footer__label">ETU003082 &mdash; ETU003224</span>
+        </div>
     </div>
 
-    <form th:action="@{/login}" method="post">
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" placeholder="e.g. admin" required autofocus/>
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" placeholder="••••••••" required/>
-        </div>
-        <button type="submit">Sign In</button>
-    </form>
+    <!-- Form panel -->
+    <div class="login-panel--form">
 
-    <hr>
+        <div class="login-header">
+            <h1>Connexion</h1>
+        </div>
 
-    <a th:href="@{/article/list}" class="guest-link">
-        Continuer en tant qu'invité
-    </a>
+        <div th:if="${param.error}" class="error-msg" style="margin-bottom: 1.5rem;">
+            Identifiants invalides. Veuillez réessayer.
+        </div>
+
+        <form th:action="@{/login}" method="post" class="login-form">
+            <div class="field">
+                <label for="username">Identifiant</label>
+                <input type="text" id="username" name="username"
+                       placeholder="ex: admin" value="admin" required autofocus />
+            </div>
+            <div class="field">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" name="password"
+                       placeholder="••••••••" value="admin" required />
+            </div>
+            <button type="submit" class="btn btn--primary">
+                Se connecter
+            </button>
+        </form>
+
+        <div class="login-divider">
+            <span>ou</span>
+        </div>
+
+        <a th:href="@{/article/list}" class="guest-link">
+            Continuer en tant qu'invité
+        </a>
+
+    </div>
 </div>
 
 </body>

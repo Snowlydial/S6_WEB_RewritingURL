@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle} + ' — IranInfo BO'">Page — IranInfo</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}" />
+    <link rel="stylesheet" th:href="@{/css/article-form.css}" />
+</head>
+<body>
+
+<!-- Nav -->
+<div th:replace="fragments/nav :: topNav"></div>
+
+<!-- Layout -->
+<div class="bo-layout">
+    <!-- Sidebar -->
+    <div th:replace="fragments/nav :: sidebar"></div>
+    
+    <!-- Main Content Placeholder -->
+    <main class="bo-main" th:fragment="content">
+        <!-- Page-specific content goes here -->
+    </main>
+</div>
+
+</body>
+</html>
