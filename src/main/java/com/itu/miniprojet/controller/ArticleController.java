@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import net.coobird.thumbnailator.Thumbnails;
 
 import com.itu.miniprojet.model.Article;
 import com.itu.miniprojet.service.ArticleService;
@@ -61,18 +61,24 @@ public class ArticleController {
     @ResponseBody
     public Map<String, String> uploadImage(@RequestParam("file") MultipartFile file) {
         try {
-            String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
-            Path path = Paths.get("uploads/" + fileName);
+            String originalName = file.getOriginalFilename();
             
-            // Ensure directory exists
+            // Normalize extension to jpg for compression consistency
+            String fileName = System.currentTimeMillis() + "_" + 
+                originalName.replaceAll("\\.[^.]+$", ".jpg");
+            Path path = Paths.get("uploads/" + fileName);
             Files.createDirectories(path.getParent());
-            Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 
-            // Return the URL for TinyMCE to insert into the editor
+            Thumbnails.of(file.getInputStream())
+                .size(800, 800)
+                .outputFormat("jpg")
+                .outputQuality(0.80)
+                .toFile(path.toFile());
+
             return Map.of("location", "/uploads/" + fileName);
         } catch (IOException e) {
             return Map.of("error", "Failed to upload image");
-        }
     }
+}
     
 }
