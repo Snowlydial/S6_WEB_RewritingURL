@@ -35,3 +35,6 @@ build/
 /src/test
 uploads/*
 !uploads/.gitkeep
+
+public/uploads/*
+public/!uploads/.gitkeep
