@@ -21,6 +21,6 @@ function currentPath(): string { return \Util\currentPath(); }
 function generateSlug(string $input): string { return \Util\generateSlug($input); }
 function generateSummary(string $title, string $content, int $max = 150): string { return \Util\generateSummary($title, $content, $max); }
 function uploadImage(array $file, string $uploadDir): array { return \Util\uploadImage($file, $uploadDir); }
-function resizeAndSave(string $src, string $mime, string $dest, int $maxW, int $maxH, int $quality): bool { return \Util\resizeAndSave($src, $mime, $dest, $maxW, $maxH, $quality); }
+function resizeAndSave(string $src, string $mime, string $dest, int $maxW, int $maxH, int $quality, string $targetFormat = 'jpeg'): string|false { return \Util\resizeAndSave($src, $mime, $dest, $maxW, $maxH, $quality, $targetFormat); }
 function e(mixed $val): string { return \Util\e($val); }
 function formatDate(string $datetime, string $tz = 'Indian/Antananarivo'): string { return \Util\formatDate($datetime, $tz); }
