@@ -1,113 +1,233 @@
-.fo-main {
-  max-width: 780px;
+.fo-lm-wrap {
+  max-width: 980px;
   margin: 0 auto;
-  padding: var(--space-xl) var(--space-lg);
+  padding: clamp(1rem, 2.4vw, 2rem);
 }
 
-.fo-article__header {
-  margin-bottom: var(--space-xl);
-  padding-bottom: var(--space-lg);
-  border-bottom: var(--border);
+.fo-lm-main {
+  background: var(--dark-2);
+  border: var(--border);
 }
 
-.fo-article__header .accent-bar { margin-bottom: var(--space-lg); }
-
-.fo-article__title {
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  line-height: 1;
-  letter-spacing: 0.02em;
-  color: var(--white);
-  margin-bottom: var(--space-md);
-}
-
-.fo-article__meta {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--grey);
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-}
-
-.fo-article__meta .sep { color: var(--pink); }
-
-/* Article body typography */
-.fo-article__body {
-  font-family: var(--font-body);
-  font-size: 1.1rem;
-  line-height: 1.8;
+.fo-lm-article {
+  padding: clamp(1.15rem, 2.2vw, 2rem);
   color: var(--off-white);
 }
 
-.fo-article__body h1,
-.fo-article__body h2,
-.fo-article__body h3,
-.fo-article__body h4,
-.fo-article__body h5,
-.fo-article__body h6 {
-  font-family: var(--font-display);
-  color: var(--white);
-  margin: 2.5rem 0 1rem;
-  letter-spacing: 0.03em;
-}
-
-.fo-article__body h2 { font-size: 2rem; border-left: 3px solid var(--pink); padding-left: 1rem; }
-.fo-article__body h3 { font-size: 1.5rem; }
-
-.fo-article__body p { margin-bottom: 1.5rem; }
-
-.fo-article__body img {
-  max-width: 100%;
-  height: auto;
-  margin: var(--space-lg) 0;
-  border: var(--border);
-}
-
-.fo-article__body a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
-.fo-article__body a:hover { color: var(--pink); }
-
-.fo-article__body blockquote {
-  border-left: 3px solid var(--blue);
-  padding-left: var(--space-lg);
-  margin: var(--space-lg) 0;
-  color: var(--grey);
-  font-style: italic;
-}
-
-.fo-article__body ul,
-.fo-article__body ol {
-  margin: 0 0 1.5rem 1.5rem;
-}
-
-.fo-article__body li { margin-bottom: 0.4rem; }
-
-.fo-article__body table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: var(--space-lg);
-  font-size: 0.9rem;
-}
-
-.fo-article__body th,
-.fo-article__body td {
-  padding: 0.6rem 0.75rem;
-  border: var(--border);
-  text-align: left;
-}
-
-.fo-article__body th {
-  background: var(--dark-2);
-  color: var(--blue);
+.fo-lm-kicker {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.73rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+.fo-lm-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.3rem, 6vw, 4rem);
+  color: var(--white);
+  margin: 0.45rem 0 0.85rem;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  font-weight: 400;
+}
+
+.fo-lm-tags {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.fo-lm-tag {
+  border: var(--border);
+  padding: 0.36rem 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--grey);
+  background: transparent;
+}
+
+.fo-lm-divider {
+  margin: 1.15rem 0 1rem;
+  border-top: 3px solid var(--grey-2);
+}
+
+.fo-lm-summary {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #d5dce1;
+  margin-bottom: 0.9rem;
+}
+
+.fo-lm-meta {
+  color: var(--grey);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
-@media (max-width: 640px) {
-  .fo-main { padding: var(--space-lg) var(--space-md); }
-  .fo-article__title { font-size: 2.2rem; }
+.fo-lm-dot {
+  margin: 0 0.35rem;
+  color: var(--pink);
+}
+
+.fo-lm-content {
+  margin-top: 1.6rem;
+  font-family: var(--font-body);
+  color: var(--off-white);
+  font-size: 1.12rem;
+  line-height: 1.75;
+}
+
+.fo-lm-content p {
+  margin: 0 0 1.35rem;
+}
+
+.fo-lm-content h1,
+.fo-lm-content h2,
+.fo-lm-content h3,
+.fo-lm-content h4,
+.fo-lm-content h5,
+.fo-lm-content h6 {
+  font-family: var(--font-display);
+  color: var(--white);
+  line-height: 1.12;
+  margin: 2rem 0 0.85rem;
+  letter-spacing: 0.03em;
+  font-weight: 400;
+}
+
+.fo-lm-content h2 {
+  font-size: clamp(1.75rem, 3.4vw, 2.3rem);
+  border-left: 3px solid var(--pink);
+  padding-left: 0.8rem;
+}
+
+.fo-lm-content blockquote {
+  border-left: 3px solid var(--blue);
+  margin: 1.4rem 0;
+  padding: 0.2rem 0 0.2rem 1rem;
+  color: #b7c1cb;
+  font-style: italic;
+}
+
+.fo-lm-content ul,
+.fo-lm-content ol {
+  margin: 0 0 1.35rem 1.4rem;
+}
+
+.fo-lm-content li {
+  margin-bottom: 0.35rem;
+}
+
+.fo-lm-content img {
+  max-width: 100%;
+  height: auto;
+  margin: 1.3rem 0;
+  border: var(--border);
+}
+
+.fo-lm-content a {
+  color: var(--blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.fo-lm-content a:hover {
+  color: var(--pink);
+}
+
+.fo-lm-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.fo-lm-box {
+  background: #20292b;
+  border: var(--border);
+  padding: 1rem;
+}
+
+.fo-lm-box h2 {
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: 2rem;
+  letter-spacing: 0.01em;
+  margin-bottom: 0.5rem;
+}
+
+.fo-lm-box p {
+  color: var(--grey);
+}
+
+.fo-lm-box--newsletter {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 108px;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.fo-lm-badge {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  background: #27353b;
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  padding: 0.65rem;
+}
+
+.fo-lm-box--ad {
+  min-height: 230px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.fo-lm-box--ad p {
+  font-family: var(--font-mono);
+  color: var(--grey);
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.fo-lm-box--edition {
+  border-top: 4px solid var(--grey-2);
+}
+
+.fo-lm-link {
+  display: inline-block;
+  margin-top: 0.8rem;
+  margin-right: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+.fo-lm-link:hover {
+  color: var(--pink);
+}
+
+@media (max-width: 680px) {
+  .fo-lm-wrap {
+    padding: 0.75rem;
+  }
+
+  .fo-lm-content {
+    font-size: 1.04rem;
+    line-height: 1.68;
+  }
 }
