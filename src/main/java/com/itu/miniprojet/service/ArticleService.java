@@ -18,6 +18,7 @@ public class ArticleService {
     }
 
     public Article saveArticle(Article article) {
+        article.ensureSummary();
         if (article.getCreatedAt() == null) article.setCreatedAt(LocalDateTime.now());
         return articleRepository.save(article);
     }

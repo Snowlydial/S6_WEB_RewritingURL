@@ -27,6 +27,10 @@ public class Article {
     @Column(name = "content", columnDefinition = "TEXT")
     private String content;
 
+    //*-- for meta thingy
+    @Column(name = "summary", length = 500)
+    private String summary;
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
     
@@ -49,6 +53,7 @@ public class Article {
     public String getContent() { return content; }
     public LocalDateTime getCreatedAt() { return createdAt; }
     public String getAuthors() { return authors; }
+    public String getSummary() { return summary; }
 
     //?==== Setters
     public void setId(int id) { this.id = id; }
@@ -60,6 +65,7 @@ public class Article {
     public void setContent(String content) { this.content = content; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
     public void setAuthors(String authors) { this.authors = authors; }
+    public void setSummary(String summary) { this.summary = summary; }
 
     //?=== Utilities
     private String generateSlug(String input) {
@@ -76,6 +82,20 @@ public class Article {
             .replaceAll("\\s+", "-");
     }
 
+    public void ensureSummary() {
+        if (this.summary == null || this.summary.trim().isEmpty()) {
+            // Strip HTML tags using regex
+            String plainText = (this.content != null) ? this.content.replaceAll("<[^>]*>", "") : "";
+            String combined = this.title + " - " + plainText;
+            
+            if (combined.length() > 150) {
+                this.summary = combined.substring(0, 147) + "...";
+            } else {
+                this.summary = combined;
+            }
+        }
+    }
+    
     @Override
     public String toString() {
         return "Article [id=" + id + ", title=" + title + ", slug=" + slug + 
