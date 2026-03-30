@@ -34,7 +34,7 @@ public class Article {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
     
-    @Column(name = "authors")
+    @Column(name = "authors", columnDefinition = "TEXT")
     private String authors;
 
     //?==== Constructors
