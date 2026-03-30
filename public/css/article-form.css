@@ -52,7 +52,11 @@
 }
 
 /* MAIN */
-.bo-main { padding: var(--space-xl); max-width: 960px; }
+.bo-main {
+  padding: var(--space-xl);
+  width: 100%;
+  min-width: 0;
+}
 
 .bo-page-header {
   margin-bottom: var(--space-xl);
