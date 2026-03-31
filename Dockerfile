@@ -2,6 +2,9 @@ FROM php:8.2-apache
 
 # Enable mod_rewrite for URL rewriting
 RUN a2enmod rewrite
+RUN a2enmod deflate
+RUN a2enmod headers
+RUN a2enmod expires
 
 # Install PHP extensions: PDO MySQL + GD for image resizing
 RUN apt-get update && apt-get install -y \
