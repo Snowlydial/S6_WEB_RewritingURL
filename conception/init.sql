@@ -25,11 +25,10 @@ CREATE TABLE user(
    FOREIGN KEY(id_role) REFERENCES role(id_role)
 );
 
-INSERT INTO role (label) VALUES ('admin'), ('subscriber'), ('guest');
+INSERT INTO role (label) VALUES ('admin'), ('subscriber');
 
 INSERT INTO user (username, password, id_role) VALUES 
-('admin', 'admin', 1),
-('xyz', 'xyz', 3);
+('admin', 'admin', 1);
 
 INSERT INTO article (title, slug, content, summary, created_at, authors) VALUES
 ('Iran: tensions in the Gulf rise after night strikes',
