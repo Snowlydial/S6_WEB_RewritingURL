@@ -45,13 +45,10 @@
                                     </h2>
                                     <p class="lm-summary"><?= e($item['summary'] ?: 'Aucun resume disponible pour cet article.') ?></p>
                                     <p class="lm-meta">
-                                        Publie <?= $createdAt ? e(date('d/m/Y a H:i', $createdAt)) : 'date inconnue' ?>
+                                        Publie <?= $createdAt ? e(date('d/m/Y H:i', $createdAt)) : 'date inconnue' ?>
                                         <span class="lm-dot">•</span>
                                         <?= e($item['authors'] ?: 'Auteur non renseigne') ?>
                                     </p>
-                                    <div class="lm-actions">
-                                        <a class="lm-action-link" href="<?= e($foUrl) ?>">Lire</a>
-                                    </div>
                                 </div>
                                 <div class="lm-item__media" aria-hidden="true">
                                     <span><?= strtoupper(substr((string)$item['title'], 0, 1)) ?></span>

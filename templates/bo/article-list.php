@@ -53,7 +53,7 @@
                                     </h2>
                                     <p class="lm-summary"><?= e($item['summary'] ?: 'Aucun resume disponible pour cet article.') ?></p>
                                     <p class="lm-meta">
-                                        Publie <?= $createdAt ? e(date('d/m/Y a H:i', $createdAt)) : 'date inconnue' ?>
+                                        Publie <?= $createdAt ? e(date('d/m/Y H:i', $createdAt)) : 'date inconnue' ?>
                                         <span class="lm-dot">•</span>
                                         <?= e($item['authors'] ?: 'Auteur non renseigne') ?>
                                         <span class="lm-dot">•</span>
