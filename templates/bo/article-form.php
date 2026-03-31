@@ -2,7 +2,7 @@
     $extraCss = ['article-form.css'];
     $isEdit   = !empty($article['id_article']);
     $extraHead = '
-    <script src="https://cdn.tiny.cloud/1/skykruf2h2iyzyisptxniimfug06dngjqysr4dm32mi64a9j/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
+    <script src="/js/tinymce/tinymce.min.js"></script>
     <meta name="csrf-token" content="' . e(csrfToken()) . '">';
     require __DIR__ . '/../layout/head.php';
     require __DIR__ . '/../layout/nav.php';
@@ -61,6 +61,7 @@
 <script>
 tinymce.init({
     selector: '#contentEditor',
+    license_key: 'gpl',
     plugins: ['anchor','autolink','charmap','codesample','emoticons','link','lists','image','media','searchreplace','table','visualblocks','wordcount'],
     toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link media table | align lineheight | checklist numlist bullist indent outdent | image | removeformat',
     images_upload_handler: function(blobInfo) {
