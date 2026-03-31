@@ -12,7 +12,6 @@
         <section class="lm-shell" aria-label="Back-office articles">
             <div class="lm-shell__header">
                 <div class="lm-shell__title-group">
-                    <p class="lm-kicker">PROCHE-ORIENT · INTERNATIONAL</p>
                     <h1><?= e($pageTitle) ?></h1>
                     <p class="lm-subtitle">Liste editoriale pour piloter la publication SEO et les operations CRUD.</p>
                 </div>

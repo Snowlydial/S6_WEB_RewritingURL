@@ -20,7 +20,6 @@ require __DIR__ . '/../layout/nav.php';
     <main class="fo-lm-main">
         <article class="fo-lm-article" aria-label="Article">
             <header class="fo-lm-header">
-                <p class="fo-lm-kicker">PROCHE-ORIENT · INTERNATIONAL</p>
                 <h1 class="fo-lm-title"><?= e($article['title'] ?? $pageTitle) ?></h1>
 
                 <div class="fo-lm-divider"></div>

@@ -9,7 +9,6 @@
         <section class="lm-shell" aria-label="Front-office articles">
             <div class="lm-shell__header">
                 <div class="lm-shell__title-group">
-                    <p class="lm-kicker">PROCHE-ORIENT · INTERNATIONAL</p>
                     <h1><?= e($pageTitle) ?></h1>
                     <p class="lm-subtitle">Les derniers articles publies.</p>
                 </div>
