@@ -37,3 +37,10 @@ RewriteRule ^ index.php [QSA,L]
     # Fonts
     ExpiresByType font/woff2 "access plus 6 months"
 </IfModule>
+
+# Cache everything in js/ and css/ folders
+<IfModule mod_headers.c>
+    <FilesMatch "\.(js|css|json|map)$">
+        Header set Cache-Control "max-age=2592000, public, immutable"
+    </FilesMatch>
+</IfModule>

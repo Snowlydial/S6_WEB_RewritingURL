@@ -1,6 +1,6 @@
 <?php
     $pageTitle = 'Connexion';
-    $extraCss  = ['login.css'];
+    $extraCss  = ['login.min.css'];
     require __DIR__ . '/layout/head.php';
 ?>
 

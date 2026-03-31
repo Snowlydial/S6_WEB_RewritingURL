@@ -1,5 +1,5 @@
 <?php
-    $extraCss = ['article-form.css'];
+    $extraCss = ['article-form.min.css'];
     require __DIR__ . '/../layout/head.php';
     require __DIR__ . '/../layout/nav.php';
 ?>
@@ -9,7 +9,6 @@
         <section class="lm-shell" aria-label="Front-office articles">
             <div class="lm-shell__header">
                 <div class="lm-shell__title-group">
-                    <p class="lm-kicker">PROCHE-ORIENT · INTERNATIONAL</p>
                     <h1><?= e($pageTitle) ?></h1>
                     <p class="lm-subtitle">Les derniers articles publies.</p>
                 </div>
@@ -45,13 +44,10 @@
                                     </h2>
                                     <p class="lm-summary"><?= e($item['summary'] ?: 'Aucun resume disponible pour cet article.') ?></p>
                                     <p class="lm-meta">
-                                        Publie <?= $createdAt ? e(date('d/m/Y a H:i', $createdAt)) : 'date inconnue' ?>
+                                        Publie <?= $createdAt ? e(date('d/m/Y H:i', $createdAt)) : 'date inconnue' ?>
                                         <span class="lm-dot">•</span>
                                         <?= e($item['authors'] ?: 'Auteur non renseigne') ?>
                                     </p>
-                                    <div class="lm-actions">
-                                        <a class="lm-action-link" href="<?= e($foUrl) ?>">Lire</a>
-                                    </div>
                                 </div>
                                 <div class="lm-item__media" aria-hidden="true">
                                     <span><?= strtoupper(substr((string)$item['title'], 0, 1)) ?></span>

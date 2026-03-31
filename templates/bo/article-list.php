@@ -1,6 +1,6 @@
 <?php
     $pageTitle = 'Articles';
-    $extraCss = ['article-form.css'];
+    $extraCss = ['article-form.min.css'];
     require __DIR__ . '/../layout/head.php';
     require __DIR__ . '/../layout/nav.php';
 ?>
@@ -12,7 +12,6 @@
         <section class="lm-shell" aria-label="Back-office articles">
             <div class="lm-shell__header">
                 <div class="lm-shell__title-group">
-                    <p class="lm-kicker">PROCHE-ORIENT · INTERNATIONAL</p>
                     <h1><?= e($pageTitle) ?></h1>
                     <p class="lm-subtitle">Liste editoriale pour piloter la publication SEO et les operations CRUD.</p>
                 </div>
@@ -47,20 +46,19 @@
                                 <div class="lm-item__body">
                                     <p class="lm-rubric"></p>
                                     <h2>
-                                        <a href="/article/edit/<?= (int)$item['id_article'] ?>" class="lm-title-link">
+                                        <a href="<?= e($foUrl) ?>" class="lm-title-link">
                                             <?= e($item['title']) ?>
                                         </a>
                                     </h2>
                                     <p class="lm-summary"><?= e($item['summary'] ?: 'Aucun resume disponible pour cet article.') ?></p>
                                     <p class="lm-meta">
-                                        Publie <?= $createdAt ? e(date('d/m/Y a H:i', $createdAt)) : 'date inconnue' ?>
+                                        Publie <?= $createdAt ? e(date('d/m/Y H:i', $createdAt)) : 'date inconnue' ?>
                                         <span class="lm-dot">•</span>
                                         <?= e($item['authors'] ?: 'Auteur non renseigne') ?>
                                         <span class="lm-dot">•</span>
                                         ID #<?= (int)$item['id_article'] ?>
                                     </p>
                                     <div class="lm-actions">
-                                        <a class="lm-action-link" href="<?= e($foUrl) ?>" target="_blank" rel="noopener">Voir</a>
                                         <a class="lm-action-link" href="/article/edit/<?= (int)$item['id_article'] ?>">Modifier</a>
                                         <a
                                             class="lm-action-link lm-action-link--danger"
