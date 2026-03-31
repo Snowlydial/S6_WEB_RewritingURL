@@ -18,7 +18,10 @@ $path   = currentPath();
 
 // Auth
 if ($path === '/login') {
-    if ($method === 'POST') { handleLogin(); exit; }
+    if ($method === 'POST') {
+        handleLogin();
+        exit;
+    }
     $pageTitle = 'Connexion';
     require __DIR__ . '/../templates/login.php';
     exit;
@@ -31,38 +34,59 @@ if ($path === '/logout') {
 
 // Front-office list
 if ($path === '/') {
-    handleFrontArticleList(); exit;
+    if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+        handleArticleList();
+        exit;
+    }
+    handleFrontArticleList();
+    exit;
 }
 if ($path === '/fo/articles') {
-    handleFrontArticleList(); exit;
+    handleFrontArticleList();
+    exit;
 }
 
 // Article CRUD
 if ($path === '/article/list') {
-    handleArticleList(); exit;
+    handleArticleList();
+    exit;
 }
 if ($path === '/article/add') {
-    if ($method === 'GET')  { handleArticleAdd(); exit; }
+    if ($method === 'GET') {
+        handleArticleAdd();
+        exit;
+    }
 }
 if ($path === '/article/save') {
-    if ($method === 'POST') { handleArticleSave(); exit; }
+    if ($method === 'POST') {
+        handleArticleSave();
+        exit;
+    }
 }
 if ($path === '/article/upload-image') {
-    if ($method === 'POST') { handleImageUpload(); exit; }
+    if ($method === 'POST') {
+        handleImageUpload();
+        exit;
+    }
 }
 
 // Dynamic routes: /article/edit/{id}, /article/delete/{id}
 if (preg_match('#^/article/edit/(\d+)$#', $path, $m)) {
-    handleArticleEdit((int)$m[1]); exit;
+    handleArticleEdit((int)$m[1]);
+    exit;
 }
 if (preg_match('#^/article/delete/(\d+)$#', $path, $m)) {
-    handleArticleDelete((int)$m[1]); exit;
+    handleArticleDelete((int)$m[1]);
+    exit;
 }
 
 // SEO URL: /article/{id}-{date}-{slug}
 if (preg_match('#^/article/(\d+)-[\d]+-(.+)$#', $path, $m)) {
     $article = \Article::findById((int)$m[1]);
-    if ($article) { handleArticleView($article['slug']); exit; }
+    if ($article) {
+        handleArticleView($article['slug']);
+        exit;
+    }
 }
 
 // 404
