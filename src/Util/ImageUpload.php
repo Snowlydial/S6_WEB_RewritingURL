@@ -18,10 +18,6 @@ function uploadImage(array $file, string $uploadDir): array {
     $baseName = time() . '_' . pathinfo($safeName, PATHINFO_FILENAME);
     $basePath = rtrim($uploadDir, '/') . '/' . $baseName;
 
-    if (!is_dir($uploadDir)) {
-        mkdir($uploadDir, 0775, true);
-    }
-
     $savedFormat = resizeAndSave($file['tmp_name'], $mime, $basePath . '.webp', 1000, 1000, 88, 'webp');
 
     // Fallback to JPEG if WebP encoding fails.
@@ -33,7 +29,18 @@ function uploadImage(array $file, string $uploadDir): array {
         return ['error' => 'Failed to process image.'];
     }
 
-    return ['location' => '/uploads/' . $baseName . '.' . $savedFormat];
+    $normalizedUploadDir = rtrim(str_replace('\\', '/', $uploadDir), '/');
+    $publicPos = strpos($normalizedUploadDir, '/public');
+
+    // Build a URL path that mirrors the target folder under /public.
+    if ($publicPos !== false) {
+        $urlBase = substr($normalizedUploadDir, $publicPos + strlen('/public'));
+    } else {
+        $urlBase = '/uploads';
+    }
+
+    $urlBase = rtrim($urlBase, '/');
+    return ['location' => ($urlBase !== '' ? $urlBase : '/uploads') . '/' . $baseName . '.' . $savedFormat];
 }
 
 function resizeAndSave(string $src, string $mime, string $dest, int $maxW, int $maxH, int $quality, string $targetFormat): string|false {

@@ -70,7 +70,9 @@
                                     </div>
                                 </div>
                                 <div class="lm-item__media" aria-hidden="true">
-                                    <span><?= strtoupper(substr((string)$item['title'], 0, 1)) ?></span>
+                                    <img src="<?= e($item['cover'] ?? '') ?>" 
+                                         alt="<?= strtoupper(substr((string)$item['title'], 0, 1)) ?>" 
+                                         loading="lazy">
                                 </div>
                             </article>
                         <?php endforeach; ?>

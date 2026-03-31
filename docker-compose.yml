@@ -23,6 +23,7 @@ services:
     volumes:
       - .:/var/www/html
       - ./public/uploads:/var/www/html/public/uploads
+      - ./public/uploads/cover:/var/www/html/public/uploads/cover
     depends_on:
       db:
         condition: service_healthy

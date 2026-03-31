@@ -6,6 +6,7 @@ CREATE TABLE article(
    summary VARCHAR(500) ,
    created_at DATETIME,
    authors TEXT,
+   cover TEXT,
    PRIMARY KEY(id_article)
 );
 
