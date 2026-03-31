@@ -1,6 +1,6 @@
 <?php
     $pageTitle = 'Connexion';
-    $extraCss  = ['login.css'];
+    $extraCss  = ['login.min.css'];
     require __DIR__ . '/layout/head.php';
 ?>
 
@@ -53,7 +53,7 @@
 
         <div class="login-divider"><span>ou</span></div>
 
-        <a href="/article/list" class="guest-link">Continuer en tant qu'invité</a>
+        <a href="/fo/articles" class="guest-link">Continuer en tant qu'invite</a>
 
     </div>
 </div>

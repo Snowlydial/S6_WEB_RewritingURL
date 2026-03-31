@@ -10,6 +10,12 @@ function handleArticleList(): void {
     require __DIR__ . '/../templates/bo/article-list.php';
 }
 
+function handleFrontArticleList(): void {
+    $articles = Article::findAll();
+    $pageTitle = 'Articles';
+    require __DIR__ . '/../templates/fo/article-list.php';
+}
+
 function handleArticleAdd(): void {
     requireLogin();
     $article  = [];
@@ -22,7 +28,7 @@ function handleArticleEdit(int $id): void {
     $article = Article::findById($id);
     if (!$article) { http_response_code(404); die('Article not found'); }
     $pageTitle = 'Modifier l\'article';
-    require __DIR__ . '/../templates/bo/article-form.php';
+    require __DIR__ . '/../templates/bo/article-edit.php';
 }
 
 function handleArticleSave(): void {

@@ -4,7 +4,8 @@
 <nav class="site-nav">
     <a href="/" class="site-nav__logo display">Iran<span>Info</span></a>
     <ul class="site-nav__links">
-        <li><a href="/article/list" <?= $currentPath === '/article/list' ? 'class="active"' : '' ?>>Articles</a></li>
+        <?php $articleListPath = isLoggedIn() ? '/article/list' : '/'; ?>
+        <li><a href="<?= e($articleListPath) ?>" <?= ($currentPath === '/article/list' || $currentPath === '/') ? 'class="active"' : '' ?>>Articles</a></li>
         <?php if (isLoggedIn()): ?>
             <li><a href="/article/add" <?= $currentPath === '/article/add' ? 'class="active"' : '' ?>>Rédaction</a></li>
             <li><a href="/logout">Déconnexion</a></li>

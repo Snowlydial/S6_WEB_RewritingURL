@@ -2,6 +2,10 @@
 
 namespace Util;
 
+use DateTime;
+use DateTimeZone;
+use Exception;
+
 //?=== HTML & Formatting Utilities
 
 function e(mixed $val): string {
