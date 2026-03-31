@@ -37,24 +37,42 @@ class Article {
 
         $id = isset($data['id']) && (int)$data['id'] > 0 ? (int)$data['id'] : null;
 
+        $coverPath = null;
+
+        if (!empty($_FILES['cover']) && $_FILES['cover']['error'] !== UPLOAD_ERR_NO_FILE) {
+            $uploadDir = __DIR__ . '/../public/uploads/cover/';
+            $result = uploadImage($_FILES['cover'], $uploadDir);
+
+            if (!empty($result['error'])) {
+                throw new \Exception($result['error']);
+            }
+
+            $coverPath = $result['location'];
+        }
+
         if ($id) {
-            // Fetch existing created_at so we don't overwrite it
             $existing = self::findById($id);
-            $createdAt = $existing['created_at'] ?? date('Y-m-d H:i:s');
+
+            if (!$coverPath) { // garder ancien cover si pas upload
+                $coverPath = $existing['cover'] ?? null;
+            }
 
             $stmt = $db->prepare('
                 UPDATE article
-                SET title = ?, slug = ?, content = ?, summary = ?, authors = ?
+                SET title = ?, slug = ?, content = ?, summary = ?, authors = ?, cover = ?
                 WHERE id_article = ?
             ');
-            $stmt->execute([$title, $slug, $content, $summary, $authors, $id]);
+            $stmt->execute([$title, $slug, $content, $summary, $authors, $coverPath, $id]);
+
             return $id;
+
         } else {
             $stmt = $db->prepare('
-                INSERT INTO article (title, slug, content, summary, authors, created_at)
-                VALUES (?, ?, ?, ?, ?, UTC_TIMESTAMP())
+                INSERT INTO article (title, slug, content, summary, authors, cover, created_at)
+                VALUES (?, ?, ?, ?, ?, ?, UTC_TIMESTAMP())
             ');
-            $stmt->execute([$title, $slug, $content, $summary, $authors]);
+            $stmt->execute([$title, $slug, $content, $summary, $authors, $coverPath]);
+
             return (int) $db->lastInsertId();
         }
     }
