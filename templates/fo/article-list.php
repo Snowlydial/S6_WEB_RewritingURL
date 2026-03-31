@@ -50,9 +50,13 @@
                                     </p>
                                 </div>
                                 <div class="lm-item__media" aria-hidden="true">
-                                    <img src="<?= e($item['cover'] ?? '') ?>" 
-                                         alt="<?= strtoupper(substr((string)$item['title'], 0, 1)) ?>" 
-                                         loading="lazy">
+                                    <?php if (empty($item['cover'])): ?>
+                                        <span>No image</span>
+                                    <?php else : ?>
+                                        <img src="<?= e($item['cover'] ?? '') ?>" 
+                                            alt="<?= strtoupper(substr((string)$item['title'], 0, 1)) ?>" 
+                                            loading="lazy">
+                                    <?php endif; ?>
                                 </div>
                             </article>
                         <?php endforeach; ?>
