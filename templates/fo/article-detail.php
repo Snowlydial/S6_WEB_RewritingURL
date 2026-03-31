@@ -3,6 +3,7 @@ $extraCss = ['article-detail.min.css'];
 $createdAt = !empty($article['created_at']) ? formatDate((string)$article['created_at']) : 'Date inconnue';
 $authors = trim((string)($article['authors'] ?? '')) ?: 'Redaction';
 $summary = trim((string)($article['summary'] ?? ''));
+$cover = trim((string)($article['cover'] ?? ''));
 
 $extraHead = '
     <meta name="description" content="' . e($summary ?: $article['title']) . '">
@@ -20,7 +21,10 @@ require __DIR__ . '/../layout/nav.php';
     <main class="fo-lm-main">
         <article class="fo-lm-article" aria-label="Article">
             <header class="fo-lm-header">
-                <h1 class="fo-lm-title"><?= e($article['title'] ?? $pageTitle) ?></h1>
+                <h1 <?php if ($cover !== ''): ?> style="background-image: linear-gradient(rgba(80, 80, 80, 0.45), rgba(80, 80, 80, 0.45)), url('<?= e($cover) ?>'); background-size: stretch; background-repeat: no-repeat; background-position: center; padding: 1.5rem;"
+                    <?php endif; ?> class="fo-lm-title">
+                        <?= e($article['title'] ?? $pageTitle) ?>
+                </h1>
 
                 <div class="fo-lm-divider"></div>
 
