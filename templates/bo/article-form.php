@@ -1,8 +1,7 @@
 <?php
-    $extraCss = ['article-form.css'];
+    $extraCss = ['article-form.min.css'];
     $isEdit   = !empty($article['id_article']);
     $extraHead = '
-    <script src="/js/tinymce/tinymce.min.js"></script>
     <meta name="csrf-token" content="' . e(csrfToken()) . '">';
     require __DIR__ . '/../layout/head.php';
     require __DIR__ . '/../layout/nav.php';
@@ -58,6 +57,7 @@
     </main>
 </div>
 
+<script src="/js/tinymce/tinymce.min.js"></script>
 <script>
 tinymce.init({
     selector: '#contentEditor',

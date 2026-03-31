@@ -1,5 +1,5 @@
 <?php
-    $extraCss = ['article-form.css'];
+    $extraCss = ['article-form.min.css'];
     require __DIR__ . '/../layout/head.php';
     require __DIR__ . '/../layout/nav.php';
 ?>

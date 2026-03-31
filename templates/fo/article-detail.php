@@ -1,5 +1,5 @@
 <?php
-$extraCss = ['article-detail.css'];
+$extraCss = ['article-detail.min.css'];
 $createdAt = !empty($article['created_at']) ? formatDate((string)$article['created_at']) : 'Date inconnue';
 $authors = trim((string)($article['authors'] ?? '')) ?: 'Redaction';
 $summary = trim((string)($article['summary'] ?? ''));
