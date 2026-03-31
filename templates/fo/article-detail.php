@@ -7,20 +7,12 @@ $summary = trim((string)($article['summary'] ?? ''));
 $extraHead = '
     <meta name="description" content="' . e($summary ?: $article['title']) . '">
 
-    <!-- Open Graph (Facebook, WhatsApp, etc.) -->
     <meta property="og:title" content="' . e($article['title']) . '">
     <meta property="og:description" content="' . e($summary) . '">
     <meta property="og:type" content="article">
     <meta property="og:url" content="' . e($_SERVER['REQUEST_URI']) . '">
-    
-    <!-- Optionnel si tu as une image -->
-    <meta property="og:image" content="' . e($article['image'] ?? '/default.jpg') . '">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="' . e($article['title']) . '">
-    <meta name="twitter:description" content="' . e($summary) . '">
 ';
+
 require __DIR__ . '/../layout/head.php';
 require __DIR__ . '/../layout/nav.php';
 ?>
@@ -30,11 +22,6 @@ require __DIR__ . '/../layout/nav.php';
             <header class="fo-lm-header">
                 <p class="fo-lm-kicker">PROCHE-ORIENT · INTERNATIONAL</p>
                 <h1 class="fo-lm-title"><?= e($article['title'] ?? $pageTitle) ?></h1>
-
-                <div class="fo-lm-tags" aria-label="Mots-clés">
-                    <span class="fo-lm-tag">En direct</span>
-                    <span class="fo-lm-tag">Nucleaire iranien</span>
-                </div>
 
                 <div class="fo-lm-divider"></div>
 
