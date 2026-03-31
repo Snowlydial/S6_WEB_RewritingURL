@@ -1,6 +1,9 @@
 <?php
 $extraCss = ['article-form.min.css'];
 $isEdit   = !empty($article['id_article']);
+$flashError = $_SESSION['flash_error'] ?? null;
+$flashSuccess = $_SESSION['flash_success'] ?? null;
+unset($_SESSION['flash_error'], $_SESSION['flash_success']);
 $extraHead = '
     <meta name="csrf-token" content="' . e(csrfToken()) . '">';
 require __DIR__ . '/../layout/head.php';
@@ -21,6 +24,14 @@ require __DIR__ . '/../layout/nav.php';
                 <?= $isEdit ? 'ID #' . e($article['id_article']) : 'Nouveau' ?>
             </span>
         </div>
+
+        <?php if ($flashError): ?>
+            <div class="flash flash--error" role="alert"><?= e($flashError) ?></div>
+        <?php endif; ?>
+
+        <?php if ($flashSuccess): ?>
+            <div class="flash flash--success" role="status"><?= e($flashSuccess) ?></div>
+        <?php endif; ?>
 
         <form action="/article/save" method="post" class="article-form" enctype="multipart/form-data">
             <?= csrfField() ?>

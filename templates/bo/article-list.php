@@ -1,6 +1,9 @@
 <?php
     $pageTitle = 'Articles';
     $extraCss = ['article-form.min.css'];
+    $flashError = $_SESSION['flash_error'] ?? null;
+    $flashSuccess = $_SESSION['flash_success'] ?? null;
+    unset($_SESSION['flash_error'], $_SESSION['flash_success']);
     require __DIR__ . '/../layout/head.php';
     require __DIR__ . '/../layout/nav.php';
 ?>
@@ -21,6 +24,14 @@
                 </div>
             </div>
             <div class="lm-divider"></div>
+
+            <?php if ($flashError): ?>
+                <div class="flash flash--error" role="alert"><?= e($flashError) ?></div>
+            <?php endif; ?>
+
+            <?php if ($flashSuccess): ?>
+                <div class="flash flash--success" role="status"><?= e($flashSuccess) ?></div>
+            <?php endif; ?>
 
             <div class="lm-grid">
                 <section class="lm-feed" aria-label="Liste des articles publies">

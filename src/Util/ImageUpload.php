@@ -5,7 +5,7 @@ namespace Util;
 //?=== Image Upload & Resize (using GD, no external libraries)
 function uploadImage(array $file, string $uploadDir): array {
     if ($file['error'] !== UPLOAD_ERR_OK) {
-        return ['error' => 'Upload error code: ' . $file['error']];
+        return ['error' => mapUploadErrorMessage((int)$file['error'])];
     }
 
     $allowed = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
@@ -41,6 +41,68 @@ function uploadImage(array $file, string $uploadDir): array {
 
     $urlBase = rtrim($urlBase, '/');
     return ['location' => ($urlBase !== '' ? $urlBase : '/uploads') . '/' . $baseName . '.' . $savedFormat];
+}
+
+function mapUploadErrorMessage(int $code): string {
+    return match ($code) {
+        UPLOAD_ERR_INI_SIZE,
+        UPLOAD_ERR_FORM_SIZE => 'Image too large. Maximum allowed size is ' . getEffectiveUploadLimit() . '.',
+        UPLOAD_ERR_PARTIAL   => 'Upload incomplete. Please retry.',
+        UPLOAD_ERR_NO_FILE   => 'No file selected.',
+        UPLOAD_ERR_NO_TMP_DIR => 'Server temporary folder is missing.',
+        UPLOAD_ERR_CANT_WRITE => 'Server cannot write uploaded file.',
+        UPLOAD_ERR_EXTENSION => 'Upload blocked by a server extension.',
+        default => 'Upload error code: ' . $code,
+    };
+}
+
+function getEffectiveUploadLimit(): string {
+    $uploadMax = iniSizeToBytes((string)ini_get('upload_max_filesize'));
+    $postMax = iniSizeToBytes((string)ini_get('post_max_size'));
+
+    $effective = $uploadMax;
+    if ($postMax > 0 && ($effective <= 0 || $postMax < $effective)) {
+        $effective = $postMax;
+    }
+
+    return bytesFormatting($effective > 0 ? $effective : 0);
+}
+
+function iniSizeToBytes(string $value): int {
+    $value = trim($value);
+    if ($value === '') {
+        return 0;
+    }
+
+    $number = (float)$value;
+    $unit = strtolower(substr($value, -1));
+
+    return match ($unit) {
+        'g' => (int)round($number * 1024 * 1024 * 1024),
+        'm' => (int)round($number * 1024 * 1024),
+        'k' => (int)round($number * 1024),
+        default => (int)round($number),
+    };
+}
+
+function bytesFormatting(int $bytes): string {
+    if ($bytes <= 0) {
+        return 'unknown';
+    }
+
+    if ($bytes >= 1024 * 1024 * 1024) {
+        return round($bytes / (1024 * 1024 * 1024), 2) . ' GB';
+    }
+
+    if ($bytes >= 1024 * 1024) {
+        return round($bytes / (1024 * 1024), 2) . ' MB';
+    }
+
+    if ($bytes >= 1024) {
+        return round($bytes / 1024, 2) . ' KB';
+    }
+
+    return $bytes . ' bytes';
 }
 
 function resizeAndSave(string $src, string $mime, string $dest, int $maxW, int $maxH, int $quality, string $targetFormat): string|false {

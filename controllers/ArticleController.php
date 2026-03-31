@@ -34,8 +34,20 @@ function handleArticleEdit(int $id): void {
 function handleArticleSave(): void {
     requireLogin();
     verifyCsrf();
-    Article::save($_POST);
-    redirect('/article/list');
+    try {
+        Article::save($_POST);
+        $_SESSION['flash_success'] = 'Article saved successfully.';
+        redirect('/article/list');
+    } catch (\Throwable $e) {
+        $_SESSION['flash_error'] = $e->getMessage();
+
+        $id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
+        if ($id > 0) {
+            redirect('/article/edit/' . $id);
+        }
+
+        redirect('/article/add');
+    }
 }
 
 function handleArticleDelete(int $id): void {
