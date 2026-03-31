@@ -10,6 +10,12 @@ function handleArticleList(): void {
     require __DIR__ . '/../templates/bo/article-list.php';
 }
 
+function handleFrontArticleList(): void {
+    $articles = Article::findAll();
+    $pageTitle = 'Articles';
+    require __DIR__ . '/../templates/fo/article-list.php';
+}
+
 function handleArticleAdd(): void {
     requireLogin();
     $article  = [];

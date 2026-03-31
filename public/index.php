@@ -29,8 +29,16 @@ if ($path === '/logout') {
     exit;
 }
 
+// Front-office list
+if ($path === '/') {
+    handleFrontArticleList(); exit;
+}
+if ($path === '/fo/articles') {
+    handleFrontArticleList(); exit;
+}
+
 // Article CRUD
-if ($path === '/article/list' || $path === '/') {
+if ($path === '/article/list') {
     handleArticleList(); exit;
 }
 if ($path === '/article/add') {
