@@ -47,7 +47,7 @@
                                 <div class="lm-item__body">
                                     <p class="lm-rubric"></p>
                                     <h2>
-                                        <a href="/article/edit/<?= (int)$item['id_article'] ?>" class="lm-title-link">
+                                        <a href="<?= e($foUrl) ?>" class="lm-title-link">
                                             <?= e($item['title']) ?>
                                         </a>
                                     </h2>
@@ -60,7 +60,6 @@
                                         ID #<?= (int)$item['id_article'] ?>
                                     </p>
                                     <div class="lm-actions">
-                                        <a class="lm-action-link" href="<?= e($foUrl) ?>" target="_blank" rel="noopener">Voir</a>
                                         <a class="lm-action-link" href="/article/edit/<?= (int)$item['id_article'] ?>">Modifier</a>
                                         <a
                                             class="lm-action-link lm-action-link--danger"
